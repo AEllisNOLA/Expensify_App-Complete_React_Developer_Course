@@ -775,7 +775,49 @@ const store = createStore((state = { count: 0 }, action) => {
         case 'INCREMENT':
             return {
                 count: state.count + 1
+            };
+        case 'DECREMENT':
+            return {
+                count: state.count - 1
+            };
+        case 'RESET':
+            return {
+                count: 0
             }
+        default:
+            return state
+    }
+})
+```
+## 10.87 - Subscribing and Dynamic Actions
+- Watching for changes to the store is necessary if components are to re-render. You can do this using:
+
+```
+store.subscribe(() => {
+    ...
+})
+```
+
+- To unsubscribe, 
+
+```
+const unsubscribe = store.subscribe(() => {
+    ...
+})
+```
+
+and then call unsubscribe.
+
+- You can dispatch an action and pass data along with it. _type_ must be provided or it throw an error. But you can add extra properties to it. Inside of the switch statement, create a variable that matches the item passed in the dispatch. Use validation to check if it was provided, then change store using that variable.
+
+```
+const store = createStore((state = { count: 0 }, action) => {
+    switch (action.type) {
+        case 'INCREMENT':
+            const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1
+            return {
+                count: state.count + incrementBy
+            };
         default:
             return state
     }
