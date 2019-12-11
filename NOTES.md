@@ -707,3 +707,77 @@ devServer: {
 ```
 <Route path='/edit/:id' component={EditExpense} />
 ```
+- Watch out for the differences between to='' and path=''. _to_ is for Link/NavLink, while _path_ is for Routes.
+
+## 10.84 - Why Do We Need Something Like Redux?
+- Redux is meant to make complex state easier to manage.
+
+- Problem 1:
+
+Simple applications can pass down props because every component is connected in a tree-like structure. The state lives at the top level of the app - the parent component. 
+
+For more complicated apps, there is no one parent component to store state. There are multiple component trees, so there is no good place to store state. 
+
+- Problem 2: 
+
+Components in simple apps aren't _really_ reusable. Components cannot be taken from their connection to the parent component because they tend to be tied to specific props from the parent component.
+
+For reusability, components should be able to interact with state without passing down props.
+
+NOTE: There is nothing wrong with props. Just avoid passing props in long chains where certain components aren't using them, just passing them along.
+
+- For Redux, all state is in something called the _store_. Each React component can interact with the store how it wants - change the data, fetch the data, etc.
+
+## 10.85 - Setting Up Redux
+- npm install redux.
+- Then, at the top of the file:
+```
+import {createStore} from 'redux'
+```
+- createStore() requires a function with state passed in as an argument. At this time, you can also set its defaults.
+
+```
+const store = createStore((state = { count: 0 }) => {
+    return state
+})
+```
+
+## 10.86 - Dispatching Actions
+- Actions are responsible for changing the Redux Store. An _action_ is an object that is sent to the store. The object describes what type of action you want to take. Use store.dispatch to send it.
+
+```
+store.dispatch({
+    type: 'INCREMENT'
+});
+```
+
+- store.dispatch() causes the store to run again.
+
+- the Action object is passed in as a second argument to createStore.
+
+```
+const store = createStore((state = { count: 0 }, action) => {
+    if (action.type = 'INCREMENT') {
+        return {
+            count: state.count + 1
+        }
+    }
+    else {
+        return state
+    }
+})
+```
+or, the _switch_ statement is preferred due to ease of use for multiple actions:
+
+```
+const store = createStore((state = { count: 0 }, action) => {
+    switch (action.type) {
+        case 'INCREMENT':
+            return {
+                count: state.count + 1
+            }
+        default:
+            return state
+    }
+})
+```
