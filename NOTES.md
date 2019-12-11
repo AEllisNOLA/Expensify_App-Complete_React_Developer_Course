@@ -848,3 +848,14 @@ and call it.
 ```
 store.dispatch(incrementCount({incrementBy: 5}))
 ```
+
+## 10.91 - Reducers
+- The function that we have been passing into the createStore() as an argument is actually a _reducer_. We were just lumping them together. More complicated apps will have several reducers, so you need to asign them to a variable and then pass that variable into createStore().
+
+- import combineReducers when using multiple reducers.
+
+- 1) Reducers are pure functions, meaning the output is only determined by the input. It does not use anything from outside of the function scope and it does not change anything outside of the function scope. Reducers only want to use the input (state and action) to return the new state value.
+
+- 2) Do not change state or action. Just read off both the state and action and return an object that has the new state. 
+
+## 10.92 - Working with Multiple Reducers
