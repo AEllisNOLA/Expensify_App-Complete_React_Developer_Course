@@ -823,3 +823,28 @@ const store = createStore((state = { count: 0 }, action) => {
     }
 })
 ```
+
+## 10.90 - Refactoring and Organizing
+- Action Generators are functions that return Action Objects. They are an alternative to the regular store.dispatch() syntax because they help avoid typos/give better error messeges. Remember to default the payload to an empty object.
+
+```
+const incrementCount = (payload = {}) => ({ 
+    type: 'INCREMENT',
+    incrementBy: typeof payload.incrementBy === 'number' ? payload.incrementBy : 1
+ })
+
+ const store = createStore((state = { count: 0 }, action) => {
+    switch (action.type) {
+        case 'INCREMENT':    
+            return {
+                count: state.count + action.incrementBy
+            };
+        default:
+            return state
+    }
+})
+```
+and call it.
+```
+store.dispatch(incrementCount({incrementBy: 5}))
+```
