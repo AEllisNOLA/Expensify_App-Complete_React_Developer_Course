@@ -698,3 +698,5 @@ devServer: {
 
 ## 9.78 - Setting up a 404
 - Switch Component moves through routes in order and stops when it finds a match. This makes it a great use case for 404 pages
+
+## 9.79 - Linking Between Routes
