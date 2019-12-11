@@ -699,4 +699,11 @@ devServer: {
 ## 9.78 - Setting up a 404
 - Switch Component moves through routes in order and stops when it finds a match. This makes it a great use case for 404 pages
 
-## 9.79 - Linking Between Routes
+## 9.81 - Query Strings and URL Parameters
+- React Router adds some props to components. These come in handy later for redirects, searches, etc.
+
+- React-Router allows for dynamic URLs. Say you want to edit an expense, that certain expense is going to have an ID, so the ID needs to be dynamic. The syntax for this is:
+
+```
+<Route path='/edit/:id' component={EditExpense} />
+```
