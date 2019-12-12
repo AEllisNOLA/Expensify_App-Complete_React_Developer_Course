@@ -864,5 +864,38 @@ store.dispatch(incrementCount({incrementBy: 5}))
 ## 11.98 - Connecting React and Redux
 - Connected Components are React Components that are connected to the redux store. This allows components to fetch data off the redux store for rendering, and re-rendering when that data in the store changes. It also allows redux actions to be dispatched directly from React Components.
 
-## 11.99 - Organizing Redux
--
+
+## 11.100 - Higher Order Component
+- Higher Order Components is a pattern that React-Redux makes heavy use of.
+
+- A HOC is a react component that renders another component. The parent is the HOC.
+
+- HOCs allow you to 
+    - Reuse code
+    - Accomplish Render Hijacking
+    - Manipulate Props
+    - Abstract State
+
+- Redux is going to give us a function like withAdminWarning. Components get passed inside as args. Then we can create new components as was done for AdminInfo using the function given.
+```
+const Info = (props) => (
+    <div>
+        <h1>Info</h1>
+        <p>The info is: {props.info}</p>
+    </div>
+);
+
+const withAdminWarning = (WrappedComponent) => {
+    return (props) => (
+        <div>
+            {props.isAdmin && <p>This information is private. Please do not share.</p>}
+            
+            <WrappedComponent {...props}/>
+        </div>
+    )
+}
+
+const AdminInfo = withAdminWarning(Info)
+
+ReactDOM.render(<AdminInfo isAdmin={true} info='These are the secret details'/>, document.getElementById('app'))
+```
