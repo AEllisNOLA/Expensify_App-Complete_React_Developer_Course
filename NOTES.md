@@ -958,3 +958,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(ExpenseList)
 ```
+
+## 11.103 - Controlled Inputs for Filters
+- The connected component has a dispatch prop in addition to any others you provide. So you can call props.dispatch() and pass in an action to do something. This allows for writing to the store.
