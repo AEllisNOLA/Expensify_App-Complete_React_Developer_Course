@@ -860,3 +860,9 @@ store.dispatch(incrementCount({incrementBy: 5}))
 
 ## 10.97 - Sorting with Redux
 - You can use sort() method, but for complex items like objects, you need to create a compare function as an argument.
+
+## 11.98 - Connecting React and Redux
+- Connected Components are React Components that are connected to the redux store. This allows components to fetch data off the redux store for rendering, and re-rendering when that data in the store changes. It also allows redux actions to be dispatched directly from React Components.
+
+## 11.99 - Organizing Redux
+-
