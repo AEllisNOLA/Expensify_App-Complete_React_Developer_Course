@@ -32,9 +32,9 @@ store.subscribe(() => {
 
 
 
-store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: 3700 }))
-store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: 4200 }))
-store.dispatch(setTextFilter('water'))
+store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: 3700, createdAt: 2000 }))
+store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: 4200, createdAt: 500 }))
+store.dispatch(addExpense({ description: 'Rent', note: 'For December', amount: 109500, createdAt: 1000}))
 
 
 
