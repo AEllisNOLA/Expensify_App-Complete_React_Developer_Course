@@ -899,3 +899,63 @@ const AdminInfo = withAdminWarning(Info)
 
 ReactDOM.render(<AdminInfo isAdmin={true} info='These are the secret details'/>, document.getElementById('app'))
 ```
+
+## 11.101 - Connecting Store and Component with React-Redux
+- npm install react-redux
+
+- Provider component provides the store to all components that make up the application. No passing it around. If a component wants to access the store, it just does. <Provider> must have a prop of store connecting to your store. The app goes inside.
+
+```
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+)
+
+ReactDOM.render(jsx, document.getElementById('app'))
+```
+
+- Once provider is set up, we can use the second important part of React-Redux: the connect function.
+
+```
+import React from 'react'
+import { connect } from 'react-redux'
+
+const ExpenseList = (props) => (
+    <div>
+        <h1>ExpenseList</h1>
+        {props.expenses.length}
+    </div>
+)
+
+const ConnectedExpenseList = connect((state) => {
+    return {
+        expenses: state.expenses
+    }
+})(ExpenseList)
+
+export default ConnectedExpenseList
+```
+
+Making a seperate variable for connectedExpenseList is usually not done. A more succinct way to do it is to export defaultconnect(), as done below. Also, rather than passing the function in-line, it is better to throw it on its own variable, which is typically called mapStateToProps
+
+```
+import React from 'react'
+import { connect } from 'react-redux'
+
+const ExpenseList = (props) => (
+    <div>
+        <h1>ExpenseList</h1>
+        {props.expenses.length}
+    </div>
+)
+
+const mapStateToProps = (state) => {
+    return {
+        expenses: state.expenses
+    }
+}
+
+export default connect(mapStateToProps)(ExpenseList)
+
+```
