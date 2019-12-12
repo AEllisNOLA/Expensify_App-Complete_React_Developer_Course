@@ -964,3 +964,11 @@ export default connect(mapStateToProps)(ExpenseList)
 
 ## 11.104 - Dropdown for Picking SortBy
 - A _Controlled Input_ is an input where the value is controlled by JavaScript. They tend to use a value and an event handler.
+
+## 11.105 - Creating Expense Add/Edit Form
+- The AddExpense form keeps track of state locally (i.e., the React way). Only when the form is submitted does it interact with Redux
+
+- NOTE: this.setState(() => ({ note: e.target.value })) throws errors. You must make it 2 lines and set e.target to a variable, then use that variable. Or use e.persist(). Both ways, it is two lines.
+
+## 11.106 - Setting Up a Date Picker
+- npm install moment, npm install react-dates, npm install react-addons-shallow-compare
