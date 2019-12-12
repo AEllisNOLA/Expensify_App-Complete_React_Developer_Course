@@ -5,15 +5,19 @@ import { Provider } from 'react-redux'
 
 // ROUTERS
 import AppRouter from './routers/AppRouter'
+
 // COMPONENTS
 
 // STORES
 import configureStore from './store/configureStore'
+
 // ACTIONS
 import { addExpense } from './actions/expenses'
 import { setTextFilter } from './actions/filters'
+
 // SELECTORS
 import getVisibleExpenses from './selectors/expenses'
+
 // STYLES
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
@@ -28,9 +32,10 @@ store.subscribe(() => {
 
 
 
-store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: '$37' }))
-store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: '$42' }))
+store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: 3700 }))
+store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: 4200 }))
 store.dispatch(setTextFilter('water'))
+
 
 
 const jsx = (
