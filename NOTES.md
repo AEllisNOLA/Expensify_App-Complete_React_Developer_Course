@@ -858,4 +858,5 @@ store.dispatch(incrementCount({incrementBy: 5}))
 
 - 2) Do not change state or action. Just read off both the state and action and return an object that has the new state. 
 
-## 10.92 - Working with Multiple Reducers
+## 10.97 - Sorting with Redux
+- You can use sort() method, but for complex items like objects, you need to create a compare function as an argument.
