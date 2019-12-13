@@ -32,9 +32,9 @@ store.subscribe(() => {
 
 
 
-store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: 3700, createdAt: 2000 }))
-store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: 4200, createdAt: 500 }))
-store.dispatch(addExpense({ description: 'Rent', note: 'For December', amount: 109500, createdAt: 1000}))
+store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: 3700, createdAt: 20112523500 }))
+store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: 4200, createdAt: -1231125123500 }))
+store.dispatch(addExpense({ description: 'Rent', note: 'For December', amount: 109500, createdAt: 1012312313500}))
 
 
 

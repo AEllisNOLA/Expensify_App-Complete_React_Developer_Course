@@ -972,3 +972,6 @@ export default connect(mapStateToProps)(ExpenseList)
 
 ## 11.106 - Setting Up a Date Picker
 - npm install moment, npm install react-dates, npm install react-addons-shallow-compare
+
+## 11.108 - Wiring Up Edit Expense
+- Sometimes you need to use props and state together, such as when you want already-existing data to show up in your form. For these times, you need to go to the old-school constructor function.
