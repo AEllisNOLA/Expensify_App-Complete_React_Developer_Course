@@ -5,18 +5,18 @@ exports[`Should render Header component correctly. 1`] = `
   <h1>
     Expensify!
   </h1>
-  <ForwardRef
+  <NavLink
     activeClassName="is-active"
     exact={true}
     to="/"
   >
     Dashboard
-  </ForwardRef>
-  <ForwardRef
+  </NavLink>
+  <NavLink
     activeClassName="is-active"
     to="/add"
   >
     Add Expense
-  </ForwardRef>
+  </NavLink>
 </header>
 `;
