@@ -990,5 +990,8 @@ Full-DOM rendering renders child components and more.
 ## 12.119 - Enzyme
 - Enzyme is a tool that works for both React 15 and 16. It is better than using React Test Renderer. It allows for more complexities, such as changing inputs, searches, buttons, etc.
 
-## 12:120 - Snapshot Testing with Dynamic Components
+## 12.120 - Snapshot Testing with Dynamic Components
 - To snapshot test components that require props, you want to test the un-Connected (not attached to Redux Store) version of them so that we can provide the props.
+
+## 12.121 - Mocking Libraries with Jest
+- There are occasions when you need to mock a library. For instance, we use moment() which creates a new time every time the component fires. This is an issue because the timestamp will be different every time we test.
