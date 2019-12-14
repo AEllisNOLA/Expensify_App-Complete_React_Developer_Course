@@ -22,26 +22,13 @@ import getVisibleExpenses from './selectors/expenses'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 
-const store = configureStore()
 
-store.subscribe(() => {
-    const state = store.getState()
-    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
-    console.log(visibleExpenses)
-})
-
-
-
-store.dispatch(addExpense({ description: 'Water bill', note: 'For December', amount: 3700, createdAt: 1000 }))
-store.dispatch(addExpense({ description: 'Gas bill', note: 'For December', amount: 4200, createdAt: 500 }))
-store.dispatch(addExpense({ description: 'Rent', note: 'For December', amount: 109500, createdAt: -1000}))
-
+const store = configureStore();
 
 
 const jsx = (
-    <Provider store={store}>
-        <AppRouter />
-    </Provider>
-)
-
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
 ReactDOM.render(jsx, document.getElementById('app'))

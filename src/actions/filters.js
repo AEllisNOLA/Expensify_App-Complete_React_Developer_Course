@@ -11,12 +11,12 @@ export const sortByAmount = () => ({
     type: 'SORT_BY_AMOUNT'
 })
 
-export const setStartDate = (timestamp) => ({
+export const setStartDate = (startDate) => ({
     type: 'SET_START_DATE',
-    timestamp
+    startDate
 })
 
-export const setEndDate = (timestamp) => ({
+export const setEndDate = (endDate) => ({
     type: 'SET_END_DATE',
-    timestamp
+    endDate
 })

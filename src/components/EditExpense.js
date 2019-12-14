@@ -26,7 +26,7 @@ const EditExpense = (props) => {
 
 const mapStateToProps = (state, props) => {
     return {
-        expense: state.expenses.find((expense) => expense.id === props.match.params.id),
+        expense: state.expenses.find((expense) => expense.id === props.match.params.id)
     }
 }
 

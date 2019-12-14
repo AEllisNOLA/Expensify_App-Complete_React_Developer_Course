@@ -975,3 +975,5 @@ export default connect(mapStateToProps)(ExpenseList)
 
 ## 11.108 - Wiring Up Edit Expense
 - Sometimes you need to use props and state together, such as when you want already-existing data to show up in your form. For these times, you need to go to the old-school constructor function.
+
+## Section 12:112 - Setting Up Jest
