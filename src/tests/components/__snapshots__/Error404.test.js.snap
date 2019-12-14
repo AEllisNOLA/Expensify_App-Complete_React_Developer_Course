@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should properly render Error404 component 1`] = `
+<div>
+  <p>
+    Error404 Component
+  </p>
+  <Link
+    to="/"
+  >
+    Go to Dashboard
+  </Link>
+</div>
+`;

@@ -976,7 +976,7 @@ export default connect(mapStateToProps)(ExpenseList)
 ## 11.108 - Wiring Up Edit Expense
 - Sometimes you need to use props and state together, such as when you want already-existing data to show up in your form. For these times, you need to go to the old-school constructor function.
 
-## Section 12:118 - Snapshot Testing
+## 12.118 - Snapshot Testing
 - npm install react-test-renderer
 - For components without user interaction or lifecycle events, you can use ReactShallowRenderer:
 ```
@@ -987,5 +987,8 @@ Full-DOM rendering renders child components and more.
 
 - Snapshots allow for tracking changes to the data over time.
 
-## Section 12:119 - Enzyme
+## 12.119 - Enzyme
 - Enzyme is a tool that works for both React 15 and 16. It is better than using React Test Renderer. It allows for more complexities, such as changing inputs, searches, buttons, etc.
+
+## 12:120 - Snapshot Testing with Dynamic Components
+- To snapshot test components that require props, you want to test the un-Connected (not attached to Redux Store) version of them so that we can provide the props.
