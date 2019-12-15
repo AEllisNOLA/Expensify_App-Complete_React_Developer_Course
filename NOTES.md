@@ -1027,3 +1027,5 @@ this.props.onSubmit({
 
 ## 12.124 - Testing AddExpense
 - Just like Redux takes mapStateToProps, it also takes mapDispatchToProps. This allows you to simplify the dispatch calls in your code. It makes testing your code far easier.
+
+## 12.125 - Testing EditExpense
