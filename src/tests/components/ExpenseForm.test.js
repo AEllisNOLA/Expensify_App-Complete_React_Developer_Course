@@ -1,5 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import moment from 'moment'
 import ExpenseForm from '../../components/ExpenseForm'
 import expenses from '../fixtures/expenses'
 
@@ -42,7 +43,7 @@ test("Should set amount if input is valid", () => {
     const value = '123.00'
     const wrapper = shallow(<ExpenseForm />)
     expect(wrapper.find('input').at(1).simulate('change', {
-        target: {value}
+        target: { value }
     }))
     expect(wrapper.state('amount')).toBe(value)
 })
@@ -51,7 +52,36 @@ test("Should not set amount if input is invalid", () => {
     const value = '123.001'
     const wrapper = shallow(<ExpenseForm />)
     expect(wrapper.find('input').at(1).simulate('change', {
-        target: {value}
+        target: { value }
     }))
     expect(wrapper.state('amount')).toBe('')
+})
+
+test("Should call onSubmit prop for valid form submission", () => {
+    const onSubmitSpy = jest.fn()
+    const wrapper = shallow(<ExpenseForm expense={expenses[1]} onSubmit={onSubmitSpy} />)
+    wrapper.find('form').simulate('submit', {
+        preventDefault: () => { }
+    })
+    expect(wrapper.state('error')).toBe('')
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({
+        description: expenses[1].description,
+        note: expenses[1].note,
+        amount: expenses[1].amount,
+        createdAt: expenses[1].createdAt
+    })
+})
+
+test("Should set a new date on date change", () => {
+    const now = moment()
+    const wrapper = shallow(<ExpenseForm />)
+    wrapper.find('withStyles(SingleDatePicker)').prop('onDateChange')(moment())
+    expect(wrapper.state('createdAt')).toEqual(now)
+})
+
+test("Should set calendar focus on change", () => {
+    const focused = true
+    const wrapper = shallow(<ExpenseForm />)
+    wrapper.find('withStyles(SingleDatePicker)').prop('onFocusChange')({focused})
+    expect(wrapper.state('calendarFocused')).toBe(focused)
 })

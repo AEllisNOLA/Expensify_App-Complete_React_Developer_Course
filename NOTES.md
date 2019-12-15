@@ -1012,3 +1012,15 @@ test('Should render error for invalid form submission', () => {
     wrapper.find('form').simulate('submit', { preventDefault: () => { } })
 })
 ```
+
+## 12.123 - Test Spies
+- Mocked Functions / Test Spies allow us to more completely test our code. It works well with when you need to submit an event prop is called with a certain object, such as:
+
+```
+this.props.onSubmit({
+    description: this.state.description,
+    amount: parseFloat(this.state.amount, 10) * 100,
+    createdAt: this.state.createdAt.valueOf(),
+    note: this.state.note
+})
+```
