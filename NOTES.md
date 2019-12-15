@@ -994,4 +994,21 @@ Full-DOM rendering renders child components and more.
 - To snapshot test components that require props, you want to test the un-Connected (not attached to Redux Store) version of them so that we can provide the props.
 
 ## 12.121 - Mocking Libraries with Jest
-- There are occasions when you need to mock a library. For instance, we use moment() which creates a new time every time the component fires. This is an issue because the timestamp will be different every time we test.
+- There are occasions when you need to mock a library. For instance, we use moment() which creates a new time every time the component fires. This is an issue because the timestamp will be different every time we test. With jest, you can do this by creating a __mock__ folder in your test directory and writing code such as: 
+```
+const moment = require.requireActual('moment')
+
+export default (timestamp = 0) => {
+    return moment(timestamp)
+}
+```
+
+## 12.122 - Testing User Interaction
+- To simulate user interaction. you will sometimes have to imitate an object. For instance, e.preventDefault is not recognized. It will throw an error of undefined, so you can just create an empty arrow function and assign it to that name.
+
+```
+test('Should render error for invalid form submission', () => {
+    const wrapper = shallow(<ExpenseForm />)
+    wrapper.find('form').simulate('submit', { preventDefault: () => { } })
+})
+```
