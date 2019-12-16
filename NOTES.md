@@ -1028,4 +1028,6 @@ this.props.onSubmit({
 ## 12.124 - Testing AddExpense
 - Just like Redux takes mapStateToProps, it also takes mapDispatchToProps. This allows you to simplify the dispatch calls in your code. It makes testing your code far easier.
 
-## 12.125 - Testing EditExpense
+## 13.134 - A Production Web Server with Express
+
+- Middleware is something that runs for each request in Express. Express has that built in with .static() method
