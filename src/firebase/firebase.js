@@ -23,7 +23,7 @@ database.ref().set({
     age: 35,
     stressLevel: 6,
     job: {
-        title: 'Developer',
+        title: 'Entry-Level Developer',
         company: 'Google'
     },
     isSingle: true,
@@ -77,8 +77,67 @@ database.ref().set({
 
 // NOTE: When nesting object, the directory structure needs to be in quotes. This will switch city but not state.
 
-database.ref().update({
+/* database.ref().update({
     stressLevel: 9,
     'location/city': 'Seattle',
     'job/company': 'Amazon'    
+}) */
+
+/* 147 - Updating Database */
+
+/* 1) Fetch a single time */
+
+/* database.ref('location/city')
+    .once('value')
+    .then((snapshot) => {
+        const val = snapshot.val()
+        console.log(val)
+    })
+    .catch((error) => {
+        console.log(`Error: ${error}`)
+    }) */
+
+/* 
+2) Subscribe for changes. 
+    - Cannot use with promises so we use callback pattern instead
+    - you can pass the same function that you used to turn on the subscription to turn off the subscription to that one ref while keeping others.
+*/
+
+/* const onValueChange = database.ref().on('value', (snapshot) => {
+    console.log(snapshot.val())
+}, (error) => {
+    console.log(`Error with fetching data: ${error}`)
+})
+
+setTimeout(() => {
+    database.ref('age').set(36)
+}, 3500)
+
+setTimeout(() => {
+    database.ref().off(onValueChange)
+}, 7000)
+
+setTimeout(() => {
+    database.ref('age').set(36)
+}, 10500) 
+*/
+
+
+const onValueChange = database.ref().on('value', (snapshot) => {
+    const data = snapshot.val()
+    console.log(`${data.name} is a ${data.job.title} at ${data.job.company}.`)
+}, (error) => {
+    console.log(`Error fetching data: ${error}`)
+})
+
+database.ref('job').update({
+    title: 'Mid-Level Developer',
+    company: 'AirBNB'
+})
+
+database.ref().off('value', onValueChange)
+
+database.ref('job').update({
+    title: 'Senior-Level Developer',
+    company: 'Facebook'
 })
