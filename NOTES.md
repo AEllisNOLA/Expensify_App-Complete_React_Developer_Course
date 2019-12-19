@@ -1031,3 +1031,10 @@ this.props.onSubmit({
 ## 13.134 - A Production Web Server with Express
 
 - Middleware is something that runs for each request in Express. Express has that built in with .static() method
+
+## 15.152 - Asynchronous Redux Actions
+- redux-thunk is requred to create async actions in redux.
+
+## 15.153 - Testing Async Redux Actions
+- In order to creaste a fake Redux store, you can install 'redux-mock-store'. Any middleware must also be imported.
+- When testing async functions in jest, you need to flag the function as asynchronous by passing 'done' into the callback's argument of the test() function. Then call done later on to say, "Okay, now judge whether the test passed or failed".

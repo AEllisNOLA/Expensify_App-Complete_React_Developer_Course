@@ -12,13 +12,15 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 
 const database = firebase.database()
 
+export { firebase, database as default }
+
 /* 143 - Writing to Database */
 
-database.ref().set({
+/* database.ref().set({
     name: 'Anthony Ellis',
     age: 35,
     stressLevel: 6,
@@ -35,7 +37,7 @@ database.ref().set({
     console.log("Data has been set")
 }).catch((error) => {
     console.log(`Error: ${error}`)
-})
+}) */
 
 // database.ref('location/city').set('Slidell')
 // database.ref('age').set(36)
@@ -80,10 +82,10 @@ database.ref().set({
 /* database.ref().update({
     stressLevel: 9,
     'location/city': 'Seattle',
-    'job/company': 'Amazon'    
+    'job/company': 'Amazon'
 }) */
 
-/* 147 - Updating Database */
+/* 148 - Fetching from Database */
 
 /* 1) Fetch a single time */
 
@@ -97,8 +99,8 @@ database.ref().set({
         console.log(`Error: ${error}`)
     }) */
 
-/* 
-2) Subscribe for changes. 
+/*
+2) Subscribe for changes.
     - Cannot use with promises so we use callback pattern instead
     - you can pass the same function that you used to turn on the subscription to turn off the subscription to that one ref while keeping others.
 */
@@ -119,11 +121,11 @@ setTimeout(() => {
 
 setTimeout(() => {
     database.ref('age').set(36)
-}, 10500) 
+}, 10500)
 */
 
 
-const onValueChange = database.ref().on('value', (snapshot) => {
+/* const onValueChange = database.ref().on('value', (snapshot) => {
     const data = snapshot.val()
     console.log(`${data.name} is a ${data.job.title} at ${data.job.company}.`)
 }, (error) => {
@@ -140,4 +142,130 @@ database.ref().off('value', onValueChange)
 database.ref('job').update({
     title: 'Senior-Level Developer',
     company: 'Facebook'
+}) */
+
+/* 149 - Arrays in Firebase */
+// Firebase does not allow arrays. It will not give an error, but it changes it to an object-like structure
+
+/* const notes = [
+    {
+        id: 1,
+        title: 'Note 1',
+        body: 'Body 1'
+    }, {
+        id: 2,
+        title: 'Note 2',
+        body: 'Body 2'
+    }
+]
+
+const firebaseNotes = {
+    notes: {
+        1: {
+            title: 'Note 1',
+            body: 'Body 1'
+        },
+        2: {
+            title: 'Note 2',
+            body: 'Body 2'
+        }
+    }
+} */
+
+/* database.ref('notes').push({
+    title: 'Note 2',
+    body: 'Body 2'
+}) */
+
+/* database.ref('notes/-LwPDtk0By81bsO8C6j-').update({
+    title: "My only note"
+}) */
+
+
+
+
+/* database.ref('expenses').push({
+    decription: 'Rent',
+    amount: 120000,
+    note: 'December rent',
+    createdAt: '216845'
 })
+
+database.ref('expenses').push({
+    decription: 'Grocies',
+    amount: 8174,
+    note: 'Food for week',
+    createdAt: '282014'
+})
+
+database.ref('expenses').push({
+    decription: 'Gifts',
+    amount: 17824,
+    note: 'Gifts for fam',
+    createdAt: '121821'
+})  */
+
+
+/* database.ref('expenses')
+    .once('value')
+    .then((snapshot) => {
+        const data = snapshot.val()
+        console.log(data)
+    }) */
+
+// returns object-like data
+
+/* database.ref('expenses')
+    .once('value')
+    .then((snapshot) => {
+        const expenses = []
+
+        snapshot.forEach((childSnapshot) => {
+            expenses.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+        })
+        console.log(expenses)
+    }) */
+
+
+/*
+database
+    .ref('expenses')
+    .on('value', (snapshot) => {
+        const expenses = []
+        snapshot.forEach((childSnapshot) => {
+            expenses.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+        })
+        console.log(expenses)
+    }) */
+
+// The examples above are one way to subscribe to an array
+
+// Listen for removal
+
+/* database.ref('expenses').on('child_removed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val())
+}) */
+
+// Listen for change
+/* database.ref('expenses').on('child_changed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val())
+}) */
+
+// Listen for new item. Prints them all, including new one
+
+/* database.ref('expenses').on('child_added', (snapshot) => {
+    console.log('from child_Added', snapshot.key, snapshot.val())
+}) */
+
+/* database.ref('expenses').push({
+    decription: 'Movies',
+    amount: 2224,
+    note: 'Knives Out',
+    createdAt: '481857'
+}) */
